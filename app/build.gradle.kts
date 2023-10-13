@@ -5,12 +5,13 @@ plugins {
 
 android {
     namespace = "com.example.instagram_profile_ui_jetpackcompose"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.instagram_profile_ui_jetpackcompose"
         minSdk = 24
-        targetSdk = 33
+        //noinspection EditedTargetSdkVersion
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
