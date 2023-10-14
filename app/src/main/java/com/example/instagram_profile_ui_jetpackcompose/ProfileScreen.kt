@@ -14,6 +14,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.overscroll
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -32,6 +34,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -52,6 +55,26 @@ fun ProfileScreen() {
         Spacer(modifier = Modifier.height(25.dp))
         ButtonSection(Modifier.fillMaxWidth())
         Spacer(modifier = Modifier.height(25.dp))
+        HighlightSection(
+            highlights = listOf(
+                StoryHighlight(
+                    image = painterResource(id = R.drawable.profile),
+                    text = "Me"
+                ),
+                StoryHighlight(
+                    image = painterResource(id = R.drawable.profile),
+                    text = "Me"
+                ),
+                StoryHighlight(
+                    image = painterResource(id = R.drawable.profile),
+                    text = "Me"
+                )
+            ),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 20.dp)
+
+        )
 
     }
 }
@@ -315,6 +338,36 @@ fun ActionButton(
                 contentDescription = null,
                 tint = Color.Black
             )
+        }
+    }
+}
+
+@Composable
+fun HighlightSection(
+    modifier : Modifier = Modifier,
+    highlights : List<StoryHighlight>
+) {
+    LazyRow(modifier = modifier) {
+        items(highlights.size) {
+
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center,
+                modifier = Modifier
+                    .padding(end = 15.dp)
+            ) {
+                RoundImage(
+                    image = highlights[it].image,
+                    modifier = Modifier
+                        .size(70.dp)
+                )
+                Text(
+                    text = highlights[it].text,
+                    overflow = TextOverflow.Ellipsis,
+                    textAlign = TextAlign.Center
+                )
+            }
+
         }
     }
 }
